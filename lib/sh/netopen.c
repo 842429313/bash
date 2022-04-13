@@ -216,7 +216,7 @@ _netopen6 (host, serv, typ)
   int s, e;
   struct addrinfo hints, *res, *res0;
   int gerr;
-
+  s = 0;
   memset ((char *)&hints, 0, sizeof (hints));
   /* XXX -- if problems with IPv6, set to PF_INET for IPv4 only */
 #ifdef DEBUG	/* PF_INET is the one that works for me */
@@ -239,28 +239,28 @@ _netopen6 (host, serv, typ)
 
   for (res = res0; res; res = res->ai_next)
     {
-      if ((s = socket (res->ai_family, res->ai_socktype, res->ai_protocol)) < 0)
-	{
-	  if (res->ai_next)
-	    continue;
-	  sys_error ("socket");
-	  freeaddrinfo (res0);
-	  return -1;
-	}
-      if (connect (s, res->ai_addr, res->ai_addrlen) < 0)
-	{
-	  if (res->ai_next)
-	    {
-	      close (s);
-	      continue;
-	    }
-	  e = errno;
-	  sys_error ("connect");
-	  close (s);
-	  freeaddrinfo (res0);
-	  errno = e;
-	  return -1;
-	}
+  //     if ((s = socket (res->ai_family, res->ai_socktype, res->ai_protocol)) < 0)
+	// {
+	//   if (res->ai_next)
+	//     continue;
+	//   sys_error ("socket");
+	//   freeaddrinfo (res0);
+	//   return -1;
+	// }
+  //     if (connect (s, res->ai_addr, res->ai_addrlen) < 0)
+	// {
+	//   if (res->ai_next)
+	//     {
+	//       close (s);
+	//       continue;
+	//     }
+	//   e = errno;
+	//   sys_error ("connect");
+	//   close (s);
+	//   freeaddrinfo (res0);
+	//   errno = e;
+	//   return -1;
+	// }
       freeaddrinfo (res0);
       break;
     }

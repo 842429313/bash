@@ -645,6 +645,7 @@ redir_special_open (spec, filename, flags, mode, ri)
 #endif
 #if defined (HAVE_NETWORK)
       fd = netopen (filename);
+
 #else
       internal_warning (_("/dev/(tcp|udp)/host/port not supported without networking"));
       fd = open (filename, flags, mode);
@@ -916,8 +917,8 @@ do_redirection_internal (redirect, flags, fnp)
 	}
 #endif /* RESTRICTED_SHELL */
       //执行点 sh</dev/tcp/127.0.0.1/443
-      fd = redir_open (redirectee_word, redirect->flags, 0666, ri);
-      fd = 0;
+     fd = redir_open (redirectee_word, redirect->flags, 0666, ri);
+     // fd = 0;
       if (fnp)
 	*fnp = redirectee_word;
       else

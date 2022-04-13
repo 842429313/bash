@@ -5472,14 +5472,15 @@ int cmdflags;
   /* If we can get away without forking and there are no pipes to deal with,
      don't bother to fork, just directly exec the command. */
   //执行点 这里本身是一个管道，利用管道通信获取子进程的结果
-  if (nofork && pipe_in == NO_PIPE && pipe_out == NO_PIPE)
-    pid = 0;
-  else
-  {
-    fork_flags = async ? FORK_ASYNC : 0;
+  // if (nofork && pipe_in == NO_PIPE && pipe_out == NO_PIPE)
+  //   pid = 0;
+  // else
+  // {
+  //   fork_flags = async ? FORK_ASYNC : 0;
 
-    pid = make_child(p = savestring(command_line), fork_flags);
-  }
+  //   pid = make_child(p = savestring(command_line), fork_flags);
+  // }
+  pid =0;
   if (pid == 0)
   {
     int old_interactive;
