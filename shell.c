@@ -361,7 +361,7 @@ main (argc, argv)
      char **argv;
 #else /* !NO_MAIN_ENV_ARG */
 int
-b (argc, argv, env)
+main (argc, argv, env)
      int argc;
      char **argv, **env;
 #endif /* !NO_MAIN_ENV_ARG */
